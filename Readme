@@ -1,0 +1,90 @@
+Hi there, thanks for marking!
+If you have any issues, please email at chskea001@myuct.ac.za
+
+When both of the programs are run, I have included some basic output in the terminal to show 
+the params used during the run as well as the optimal policy to complement the plot. I hope this helps
+
+I decided agaisnt generating GIFs as for QLearning this would take over a minute.
+
+###### Make Commands ######
+    'make ValueIteration' - will make the virtual enviroment and install the requirements.txt and then run the ValueIteration.py file with values:
+        width: 5
+        height: 5 
+        and defaualt values (listed under ValueIteration.py section in ReadMe)
+
+    'make QLearning' - will make the virtual enviroment and install the requirements.txt and then run the Qlearning.py file with values:
+        width:
+        height:
+        and defaualt values (listed under ValueIteration.py section in ReadMe)
+
+    'make' , 'make venv' and 'make install' - will both make the virtual enviroment and install the requirements.txt, but not run the python file 
+    'make clean' - will remove the virtual enviroment as well as all .pyc files.
+
+###### Run Commands ######
+    if make/make venv/ make install run:
+        requirements.txt will be installed and virtual enviroment created but not entered into.
+        To enter virtual enviroment:
+            source ./venv/bin/activate
+    
+    Then can run either ValueIteration.py or Qlearning.py by the commands listed below.
+
+###### ValueIteration.py ######
+# grid starts at 0. so if 5x5 bottom right corner is (4,4) PS this caused me a massive headache late at night forgetting that. 
+
+If any issues run -> python ValueIteration.py 5 5 -start 0 0 -end 4 4 -k 4 -gamma 0.9
+
+default run -> python ValueIteration.py width height
+sets : k = 3 (at random locations, never same or on start or end)
+        g = 0.9 
+        start, end = random location
+        grid size = width X height
+
+Params accepted:
+    -start x y 
+    -end x y 
+    -k number
+    -g number
+
+For convergence I set the hyperparamter theta = 0.005. 
+FPS for animate is set to 1
+
+If at the first run there looks to be an issue, please run again, I am fairly confident my alogirthm works, 
+but due to the random location of start and end as well as landmines, depening on the size sometimes there may 
+be no possible route or a very sort route, so please simply re run and new random values will be generated.
+
+I have included as many checks as I could think to prevent issues, such as never placing landmines on the start or end, 
+not allowing multiple landmines on the same location etc, but in wierd circumstances things may slip through. 
+
+The only issue I can see with my algoirthm is that when propogating backwards once the change threshold has been reached
+this will always happen from the end of the records array and not from the end location, meaning that if the end location
+is not at the bottom right corner the first iteration will display a large "jump" or lots of records at once.
+
+###### Q Learning ######
+
+Please be patient with this algorithm! It is running just takes some time to generate the plot.
+
+I learnt a lot during the ValueIteration part epeciallty in dealing with tuples, lists and dicts. So for the QLearning I have
+managed to implement slightly more efficient code and has made my life easier. Some code was reused but I managed to get it to work.
+
+If any issues run -> python QLearning.py 10 10 -start 0 0 -end 9 9 -k 5  -epochs 350 -learning 0.9 -gamma 0.8
+
+default run -> python QLearning.py width height
+sets : k = 3 (at random locations, never same or on start or end)
+        g = 0.9 
+        start, end = random location
+        grid size = width X height
+        learning_rate = 0.9
+        epochs = 1000
+
+Params accepted:
+    -start x y 
+    -end x y 
+    -k number
+    -g number
+    -epochs number
+    -learning number
+
+FPS for animate is set to 10
+
+###### Git ######
+There is a git log included of all my commits. 
